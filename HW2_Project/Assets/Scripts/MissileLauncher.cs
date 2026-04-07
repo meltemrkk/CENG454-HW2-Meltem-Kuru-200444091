@@ -13,6 +13,14 @@ public class MissileLauncher : MonoBehaviour
         if (activeMissile == null)
         {
             activeMissile = Instantiate(missilePrefab, launchPoint.position, launchPoint.rotation);
+
+            // Füzeye hedefini (uçaðý) ver
+            MissileHoming homingScript = activeMissile.GetComponent<MissileHoming>();
+            if (homingScript != null)
+            {
+                homingScript.SetTarget(target);
+            }
+
             if (launchAudioSource != null) launchAudioSource.Play();
         }
     }
